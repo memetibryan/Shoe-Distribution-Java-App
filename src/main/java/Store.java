@@ -13,7 +13,7 @@ class Store {
     mName = name;
   }
 
-  public String get getName() {
+  public String getName() {
     return mName;
   }
 
@@ -38,7 +38,7 @@ class Store {
     return false;
   } else {
     Store newStore = (Store) otherStore;
-    return this.getName().equals(newStore.getDescription());
+    return this.getName().equals(newStore.getName());
   }
   }
 
@@ -87,7 +87,7 @@ class Store {
       return false;
     } else {
       Store newStore = (Store) otherStore;
-      return this.getDescription().equals(newStore.getDescription()) &&
+      return this.getName().equals(newStore.getName()) &&
              this.getId() == newStore.getId();
     }
   }
