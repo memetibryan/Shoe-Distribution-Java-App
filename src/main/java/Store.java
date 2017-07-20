@@ -9,10 +9,6 @@ class Store {
   private LocalDateTime createdAt;
   private int id;
 
-  public Store(String name) {
-    mName = name;
-  }
-
   public String getName() {
     return mName;
   }
@@ -60,15 +56,6 @@ class Store {
       .executeAndFetchFirst(Store.class);
     return store;
   }
-  }
-
-  public void save() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stores (name) VALUES (:name)";
-      con.createQuery(sql)
-        .addParameter("name", this.name)
-        .executeUpdate();
-    }
   }
 
   public void save() {
