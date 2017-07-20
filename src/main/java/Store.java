@@ -28,36 +28,6 @@ class Store {
     }
   }
 
-  @Override
-  public boolean equals(Object otherStore) {
-  if (!(otherStore instanceof Store)) {
-    return false;
-  } else {
-    Store newStore = (Store) otherStore;
-    return this.getName().equals(newStore.getName());
-  }
-  }
-
-  public void save() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stores(name) VALUES (:name)";
-      this.id = (int) con.createQuery(sql, true)
-        .addParameter("name", this.name)
-        .executeUpdate()
-        .getKey();
-    }
-  }
-
-  public static Store find(int id) {
-  try(Connection con = DB.sql2o.open()) {
-    String sql = "SELECT * FROM stores where id=:id";
-    Store store = con.createQuery(sql)
-      .addParameter("id", id)
-      .executeAndFetchFirst(Store.class);
-    return store;
-  }
-  }
-
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO stores(name) VALUES (:name)";
